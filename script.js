@@ -19,14 +19,14 @@ function selecionarPalavras(x) {
 
 
 const contarLetras = (x) => {
-    let letterCounts = {};
+    let letterCounts = {a: undefined};  
 
     for (let i = 0; i < x.length; i++) {
-        currentLetter = x[i];
+        let currentLetter = x[i];
         // if (letterCounts[currentLetter] === ' ') { como retirar os espaços?
         // }
-        if (letterCounts[currentLetter] === undefined) {
-            letterCounts[currentLetter] = 1; 
+        if (letterCounts[currentLetter] === undefined) {  
+            letterCounts[currentLetter] = 1;
         } else { 
             letterCounts[currentLetter]++; 
         }
@@ -62,9 +62,20 @@ const contarPalavras = (x) => {
      }
 }
 
+function limparMesa(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 const button = document.getElementById("countButton");
 button.addEventListener("click", function() {  
    // teu código vai aqui ... 
+const letters = document.getElementById('lettersDiv')
+const words = document.getElementById('wordsDiv')
+limparMesa(letters)
+limparMesa(words)
+
    const typedText = selecionarLetras(textBox);
    contarLetras(typedText);
 
